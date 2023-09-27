@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+	<meta http-equiv="content-type" content="text/html" charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	<!-- ClipboardJS for the copy code functionality -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
+	
+	<style>
+		
+		body { font-family: sans-serif; }
+		
+		div.topper { border-bottom: 1px solid #eee; margin: 30px; }
+		div.topper ol { color: #777; line-height: 1.5; font-size: 80%; }
+		div.signature-generator { display: flex; flex-wrap: wrap; column-gap: 30px; margin: 0 30px;}
+		
+		div.inputs { padding: 40px; background: #f2f2f2;flex-grow: 1; font-size: 12px; margin-bottom: 30px; }
+		div.output { flex-grow: 7; margin-bottom: 30px; }
+		div#signature-code { background: #fff; border: 1px solid #efefef; padding: 40px; margin-bottom: 30px; }
+		
+		form div { margin-bottom: 10px; display: flex;}
+		form div label { width: 100px; }
+
+		div#code-output { margin-top: 40px; font-family: ui-monospace, monospace; border: 2px solid #ccc; padding: 20px; font-size: 12px; display: none; }
+
+		
+		
+	</style>
+
+</head>
+
+<body>
+	<div class="topper">
+		
+		<h1>Email signature generator</h1>
+		
+		<ol>
+			<li>Adjust the settings using the fields on the left side</li>
+			<li>Click Submit to see updated signature changes</li>
+			<li>Copy signature to clipboard</li>
+			<li>Create a new signature in Gmail and paste in the copied signature</li>
+		</ol>
+	</div>
+	
+	<div class="signature-generator">
+		
+		<div class="inputs">
+		
+			<form id="info-form">
+				
+				<div class="form-name">
+					<label id="name-label" for="nameField">Name</label>
+					<input id="nameField" type="text" maxlength="100" placeholder="First and last"></input>
+				</div>
+				
+	
+				<div class="form-jobtitle">
+					<label id="job-label" for="jobField">Job title</label>
+					<input id="jobField" type="text" maxlength="100"></input>
+				</div>
+	
+
+				<div class="form-email">
+					<label id="email-label" for="emailField">Email</label>
+					<input id="emailField" type="text" maxlength="100"></input>
+				</div>
+				
+				
+				<div class="form-phone">
+					<label id="phone-label" for="phoneField">Phone</label>
+					<input id="phoneField" type="text" maxlength="100"></input>
+				</div>
+
+				
+				<div class='form-sub'>
+					<button id='subButton' type='button'>Submit</button>
+				</div>
+	
+			</form>
+
+			<div>
+				<p id='result'></p>
+			</div>
+
+	</div><!-- end inputs -->
+
+	<div class="output">
+
+	<!-- -------------------- START email signature -------------------- -->
+	
+	<div id="signature-code">
+	<div class="signature" id="email-signature" style="margin: 30px 0; width: 100%;">
+		<table style="margin: 25px 0 15px; border: 3px solid #000; padding: 0; width: 100%; font-size: 16px; font-family: sans-serif; line-height: 1.3; border-collapse: collapse; font-family: serif;" >
+			<tbody>
+				<tr>
+					
+					<td class="name-block" style="vertical-align: top; padding: 15px;">
+						<p style="margin: 0; line-height: 1.4; font-size: 20px;"><strong><span id="signatureName">Firstname Lastname</span></strong></p>
+						<p id="signatureJob" style="margin: 0; line-height: 1.4;">Job title</p>
+					</td>
+				</tr>
+
+				<tr>
+					<td class="contact-info" style="vertical-align: top; background: #153987; color: #fff; padding: 15px; font-size: 14px;">
+						<p id="signatureEmail" style="margin: 0;">email@address</p>
+						<p id="signaturePhone" style="margin: 0;">(555) 555-5555</p>
+						<p style="margin: 0;">Sunflower Grant Writers</p>
+					</td>
+				</tr>
+				
+				<tr>
+			</tbody>
+		</table>
+
+
+	</div>
+	
+	</div>
+	
+	<!-- -------------------- END email signature -------------------- -->
+
+	<button class="btn" data-clipboard-target="#email-signature">
+		Copy to clipboard
+	</button>
+	
+	</div><!-- end output div -->
+	
+
+	</div><!-- end signature-generator -->
+	
+	<div id="code-output">
+		<pre style="color: #aaa;">When finished, copy code from here into the signature settings in your email program.</pre>
+	</div>
+
+  </body>
+  
+  <script>
+	  
+		var personName = document.getElementById('signatureName');
+		var personJob = document.getElementById('signatureJob');
+		var personEmail = document.getElementById('signatureEmail');
+		var personPhone = document.getElementById('signaturePhone');
+		
+		var codeOutput = document.getElementById('code-output');
+	  
+	  function getUserInfo() {
+  		var nameField = document.getElementById('nameField').value;
+  		var jobField = document.getElementById('jobField').value;
+  		var emailField = document.getElementById('emailField').value;
+  		var phoneField = document.getElementById('phoneField').value;
+  		
+  		var result = document.getElementById('result');
+  		
+  		
+
+  		
+  		function email() {
+	  		personEmail.innerHTML = "<a href='mailto:" + emailField + "' style='text-decoration: none; color: inherit;'>" + emailField + "</a>"
+  		}
+		
+
+		
+		
+		
+  		
+  		if (nameField.length < 3) {
+	  		result.innerHTML = 'Name field must contain at least 3 characters';
+  		} else {
+	 		
+	 		if (nameField) { personName.innerHTML = nameField; };
+	 		if (personJob) { personJob.innerHTML = jobField; };
+	 		if (personPhone) { personPhone.innerHTML = phoneField; };
+	 		if (personEmail) { email(emailField); };
+				  		
+  		}
+	  } // getUserInfo
+	  
+	  	  
+		function printDiv() {
+			var divContents = document.getElementById("signature-code").innerHTML;
+			codeOutput.innerText = divContents;
+		}	  
+
+	  
+	  var subButton = document.getElementById('subButton');
+	  subButton.addEventListener('click', getUserInfo, false); 
+	  subButton.addEventListener('click', printDiv, false); 
+	  
+
+	  
+  </script>
+  
+  <script>
+	  new ClipboardJS('.btn');
+  </script>
+  
+</html>
