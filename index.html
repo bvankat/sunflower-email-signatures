@@ -102,7 +102,7 @@
 	<div class="signature" id="email-signature" style="margin: 30px 0; border: 3px solid #000; margin: 25px 0 15px 0; display: flex; width: 500px;">
 		
 		<div id="image">
-			<div id="signatureImage" style="width: 125px; padding: 10px; vertical-align: middle; text-align: center; color: #888; height: auto;">[ Headshot ]</div>
+			<div id="signatureImage" style="width: 125px; max-height: 185px; padding: 10px; vertical-align: middle; text-align: center; color: #888; height: auto;">[ Headshot ]</div>
 		</div>
 			
 		<table style="margin: 0; padding: 0; width: 375px; font-size: 16px; font-family: serif; line-height: 1.3; border-collapse: collapse; border-spacing: 0; font-family: serif;" >
@@ -114,7 +114,7 @@
 						<p style="margin: 0; line-height: 1.4; font-size: 20px;"><strong><span id="signatureName">Firstname Lastname</span></strong></p>
 						<p id="signatureJob" style="margin: 0; line-height: 1.4;">Job title</p>
 					</td>
-					<td rowspan="2" style="vertical-align: bottom; text-align: right; width: 110px; padding: 0;"><img src="cropped-flower.png" style="vertical-align: bottom; width: 140px;" /></td>
+					<td rowspan="2" style="vertical-align: bottom; text-align: right; width: 110px; padding: 0;"><img src="cropped-flower.png" style="vertical-align: bottom; width: 130px;" /></td>
 				</tr>
 
 				<tr>
@@ -174,7 +174,7 @@
 			
 		function getImage() {
 			if (imageField == "katie") { 
-				personImage.innerHTML = "<div id='signatureImage' style='width: 125px; padding: 0; margin: 0; background: #efefef; vertical-align: top;'><img src='" + katie_image + "' style='width: 100%;' />";
+				personImage.innerHTML = "<div id='signatureImage' style='width: 125px; max-height: 185px; padding: 0; margin: 0; background: #efefef; vertical-align: top;'><img src='" + katie_image + "' style='width: 100%;' />";
 				const email_sig_container = document.getElementById("email-signature");
 				email_sig_container.style.width = "500px";
 				}
