@@ -170,12 +170,12 @@
 			
 		function getImage() {
 			if (imageField == "katie") { 
-				personImage.innerHTML = "<div id='signatureImage' style='width: 100px; height: auto; padding: 0; margin: 0; background: none; vertical-align: top; overflow: hidden;'><img src='" + katie_image + "' style='width: 110px;' />";
+				personImage.innerHTML = "<div id='signatureImage' style='width: 100px; height: 164px; padding: 0; margin: 0; vertical-align: top; overflow: hidden; background-size: cover; background-image: url(" + katie_image + ");'></div>";
 				const email_sig_container = document.getElementById("email-signature");
 				email_sig_container.style.width = "500px";
 				}
 			if (imageField == "none") { 
-				const element = document.getElementById("signatureImage");
+				const element = document.getElementById("image");
 				if ( element ) {
 					element.remove();
 					const email_sig_container = document.getElementById("email-signature");
